@@ -160,19 +160,19 @@ export default function MeditationTimer() {
 
     switch (breathPhase) {
       case 'inhale':
-        transform = 'scale(1.5)';
+        transform = 'scale(1.3)';
         transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
         break;
       case 'hold':
-        transform = 'scale(1.5)';
+        transform = 'scale(1.3)';
         transition = 'none';
         break;
       case 'exhale':
-        transform = 'scale(0.7)';
+        transform = 'scale(0.8)';
         transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
         break;
       case 'rest':
-        transform = 'scale(0.7)';
+        transform = 'scale(0.8)';
         transition = 'none';
         break;
     }
