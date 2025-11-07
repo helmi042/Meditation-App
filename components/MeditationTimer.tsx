@@ -155,8 +155,32 @@ export default function MeditationTimer() {
 
   const getCircleStyle = () => {
     const duration = breathingCycle[breathPhase];
+    let transform = 'scale(1)';
+    let transition = '';
+
+    switch (breathPhase) {
+      case 'inhale':
+        transform = 'scale(1.5)';
+        transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
+        break;
+      case 'hold':
+        transform = 'scale(1.5)';
+        transition = 'none';
+        break;
+      case 'exhale':
+        transform = 'scale(0.7)';
+        transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
+        break;
+      case 'rest':
+        transform = 'scale(0.7)';
+        transition = 'none';
+        break;
+    }
+
     return {
-      '--breath-duration': `${duration}s`,
+      transform,
+      transition,
+      opacity: breathPhase === 'inhale' || breathPhase === 'hold' ? 1 : 0.6,
     } as React.CSSProperties;
   };
 
@@ -231,7 +255,7 @@ export default function MeditationTimer() {
             {/* Breathing Circle */}
             <div className="flex flex-col items-center justify-center">
               <div
-                className="w-48 h-48 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 animate-breathe mb-6"
+                className="w-48 h-48 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 shadow-2xl mb-6"
                 style={getCircleStyle()}
               />
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">
